@@ -24,6 +24,8 @@ func main() {
 
 	c := productpb.NewProductServiceClient(cc)
 
+	//Creating Product
+	fmt.Println("-------Creating Product------")
 	product := &productpb.Product{
 		Name:  "Smartphone YY",
 		Price: 25000.05,
@@ -37,4 +39,22 @@ func main() {
 		log.Fatalf("Failed to create product %v", err)
 	}
 	fmt.Printf("Product created %v", createdProduct)
+
+	//Getting Product
+	fmt.Println("-------Getting Product------")
+
+	productID := createdProduct.GetProduct().GetId()
+
+	getProductReq := &productpb.GetProductRequest{
+		ProductId: productID,
+	}
+
+	getProductRes, getProductErr := c.GetProduct(context.Background(), getProductReq)
+
+	if getProductErr != nil {
+		log.Fatalf("Failed to getting product %v", getProductErr)
+	}
+
+	fmt.Printf("Product gotten_: %v", getProductRes)
+
 }

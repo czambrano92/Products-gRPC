@@ -72,7 +72,7 @@ func (*server) GetProduct(ctx context.Context, req *productpb.GetProductRequest)
 
 		return nil, status.Errorf(
 			codes.InvalidArgument,
-			fmt.Sprintf("cannot parse ID"),
+			fmt.Sprintf("cannot parse ID %v", productId),
 		)
 	}
 
