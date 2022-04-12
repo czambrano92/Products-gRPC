@@ -151,15 +151,13 @@ func (*server) UpdateProduct(ctx context.Context, req *productpb.UpdateProductRe
 func (*server) DeleteProduct(ctx context.Context, req *productpb.DeleteProductRequest) (*productpb.DeleteProductResponse, error) {
 	fmt.Println("Delete product request")
 
-	prod := req.GetProduct()
-
-	oid, err := primitive.ObjectIDFromHex(reg.GetProductId())
+	oid, err := primitive.ObjectIDFromHex(req.GetProductId())
 
 	if err != nil {
 
 		return nil, status.Errorf(
 			codes.InvalidArgument,
-			fmt.Sprintf("cannot parse ID %v", prod),
+			fmt.Sprintf("cannot parse ID %v", req.GetProductId()),
 		)
 	}
 
