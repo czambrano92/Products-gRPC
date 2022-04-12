@@ -148,6 +148,43 @@ func (*server) UpdateProduct(ctx context.Context, req *productpb.UpdateProductRe
 
 }
 
+func (*server) DeleteProduct(ctx context.Context, req *productpb.DeleteProductRequest) (*productpb.DeleteProductResponse, error) {
+	fmt.Println("Delete product request")
+
+	prod := req.GetProduct()
+
+	oid, err := primitive.ObjectIDFromHex(reg.GetProductId())
+
+	if err != nil {
+
+		return nil, status.Errorf(
+			codes.InvalidArgument,
+			fmt.Sprintf("cannot parse ID %v", prod),
+		)
+	}
+
+	filter := bson.M{"_id:": oid}
+	res, err := collection.DeleteOne(context.Background(), filter)
+
+	if err != nil {
+		return nil, status.Errorf(
+			codes.Internal,
+			fmt.Sprintf("Cannot delete product %v", err),
+		)
+	}
+
+	if res.DeletedCount == 0 {
+		return nil, status.Errorf(
+			codes.NotFound,
+			fmt.Sprintf("Cannot find the product %v", err),
+		)
+	}
+
+	return &productpb.DeleteProductResponse{
+		ProductId: req.GetProductId(),
+	}, nil
+}
+
 func main() {
 
 	log.SetFlags(log.LstdFlags | log.Lshortfile)

@@ -28,6 +28,12 @@ message UpdateProductRequest{
 message UpdateProductResponse{
     Product product = 1;
 }
+message DeleteProductRequest{
+    string product_id = 1;
+}
+message DeleteProductResponse{
+    string product_id = 1;
+}
 
 
 service ProductService{
@@ -35,4 +41,5 @@ service ProductService{
     rpc CreateProduct (CreateProductRequest) returns(CreateProductResponse){};
     rpc GetProduct (GetProductRequest) returns(GetProductResponse){};
     rpc UpdateProduct (UpdateProductRequest) returns(UpdateProductResponse);
+    rpc DeleteProduct (DeleteProductRequest) returns(DeleteProductResponse);
 }
