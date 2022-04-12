@@ -10,6 +10,15 @@ message Product{
     double price = 3;    
 }
 
+message CreateProductRequest{
+    Product product = 1;
+}
+message CreateProductResponse{
+    Product product = 1;
+}
+
+
 service ProductService{
     //CRUD
+    rpc CreateProduct (CreateProductRequest) returns(CreateProductResponse){};
 }
