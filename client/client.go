@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"io"
 	"log"
 	"product/productpb"
 
@@ -17,7 +18,7 @@ func main() {
 	cc, err := grpc.Dial("localhost:50051", opts)
 
 	if err != nil {
-		log.Fatal("Failed to connect %v", err)
+		log.Fatalf("Failed to connect %v", err)
 	}
 
 	defer cc.Close()
@@ -82,5 +83,23 @@ func main() {
 	}
 
 	fmt.Printf("product deleted %v: \n", deleteRes.GetProductId())
+
+	//List products
+	stream, err := c.ListProduct(context.Background(), &productpb.ListProductRequest{})
+	if err != nil {
+		log.Fatalf("error calling list product %v", err)
+	}
+
+	for {
+		res, err := stream.Recv()
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			log.Fatalf("error receiving product: %v", err)
+		}
+
+		fmt.Println(res.GetProduct())
+	}
 
 }

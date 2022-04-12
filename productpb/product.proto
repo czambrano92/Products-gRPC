@@ -34,6 +34,12 @@ message DeleteProductRequest{
 message DeleteProductResponse{
     string product_id = 1;
 }
+message ListProductRequest{
+    
+}
+message ListProductResponse{
+    Product product = 1;
+}
 
 
 service ProductService{
@@ -42,4 +48,5 @@ service ProductService{
     rpc GetProduct (GetProductRequest) returns(GetProductResponse){};
     rpc UpdateProduct (UpdateProductRequest) returns(UpdateProductResponse);
     rpc DeleteProduct (DeleteProductRequest) returns(DeleteProductResponse);
+    rpc ListProduct (ListProductRequest) returns(stream ListProductResponse);
 }

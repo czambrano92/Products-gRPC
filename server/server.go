@@ -149,7 +149,7 @@ func (*server) UpdateProduct(ctx context.Context, req *productpb.UpdateProductRe
 }
 
 func (*server) DeleteProduct(ctx context.Context, req *productpb.DeleteProductRequest) (*productpb.DeleteProductResponse, error) {
-	time.Sleep(1000 * time.Millisecond)
+
 	fmt.Println("Delete product request")
 
 	oid, err := primitive.ObjectIDFromHex(req.GetProductId())
@@ -183,6 +183,48 @@ func (*server) DeleteProduct(ctx context.Context, req *productpb.DeleteProductRe
 	return &productpb.DeleteProductResponse{
 		ProductId: req.GetProductId(),
 	}, nil
+}
+
+func (*server) ListProduct(req *productpb.ListProductRequest, stream productpb.ProductService_ListProductServer) error {
+	fmt.Println("List products")
+
+	cur, err := collection.Find(context.Background(), primitive.D{{}})
+
+	if err != nil {
+
+		return status.Errorf(
+			codes.Internal,
+			fmt.Sprintf("Internal error: %v", err),
+		)
+	}
+
+	defer cur.Close(context.Background())
+
+	for cur.Next(context.Background()) {
+		data := &product{}
+		err := cur.Decode(data)
+		if err != nil {
+
+			return status.Errorf(
+				codes.Internal,
+				fmt.Sprintf("Error decoding data product: %v", err),
+			)
+		}
+
+		stream.Send(&productpb.ListProductResponse{
+			Product: dbToProductPb(data),
+		})
+
+		time.Sleep(1000 * time.Millisecond)
+	}
+
+	if err := cur.Err(); err != nil {
+		return status.Errorf(
+			codes.Internal,
+			fmt.Sprintf("Internal: %v", err),
+		)
+	}
+	return nil
 }
 
 func main() {
