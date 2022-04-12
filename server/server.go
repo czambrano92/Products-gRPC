@@ -8,8 +8,10 @@ import (
 	"os"
 	"os/signal"
 	"product/productpb"
+
 	"time"
 
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -60,6 +62,44 @@ func (*server) CreateProduct(ctx context.Context, req *productpb.CreateProductRe
 			Price: prod.GetPrice(),
 		},
 	}, nil
+}
+
+func (*server) GetProduct(ctx context.Context, req *productpb.GetProductRequest) (*productpb.GetProductResponse, error) {
+
+	productId := req.GetProductId()
+	oid, err := primitive.ObjectIDFromHex(productId)
+	if err != nil {
+
+		return nil, status.Errorf(
+			codes.InvalidArgument,
+			fmt.Sprintf("cannot parse ID"),
+		)
+	}
+
+	//create empty struct
+	data := &product{}
+	filter := bson.M{"_id": oid}
+
+	res := collection.FindOne(context.Background(), filter)
+
+	if err := res.Decode(data); err != nil {
+		return nil, status.Errorf(
+			codes.NotFound,
+			fmt.Sprintf("Cannot find the product: %v", err),
+		)
+	}
+
+	return &productpb.GetProductResponse{
+		Product: dbToProductPb(data),
+	}, nil
+}
+
+func dbToProductPb(data *product) *productpb.Product {
+	return &productpb.Product{
+		Id:    data.ID.Hex(),
+		Name:  data.Name,
+		Price: data.Price,
+	}
 }
 
 func main() {

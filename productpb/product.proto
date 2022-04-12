@@ -16,9 +16,16 @@ message CreateProductRequest{
 message CreateProductResponse{
     Product product = 1;
 }
+message GetProductRequest{
+    string product_id = 1;
+}
+message GetProductResponse{
+    Product product = 1;
+}
 
 
 service ProductService{
     //CRUD
     rpc CreateProduct (CreateProductRequest) returns(CreateProductResponse){};
+    rpc GetProduct (GetProductRequest) returns(GetProductResponse){};
 }
