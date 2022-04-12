@@ -66,7 +66,7 @@ func main() {
 
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 	fmt.Println("Connecting to Mongo DB")
-	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb://foo:bar@localhost:27017"))
+	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb://localhost:27017"))
 	if err != nil {
 		log.Fatalf("Error creating the client DB %v", err)
 	}
@@ -77,7 +77,7 @@ func main() {
 		log.Fatalf("Error creating the client DB %v", err)
 	}
 
-	//collection := client.Database("productdb").Collection("products")
+	collection = client.Database("productdb").Collection("products")
 
 	fmt.Println("Product service is running")
 
