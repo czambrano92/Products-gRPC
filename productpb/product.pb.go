@@ -275,6 +275,100 @@ func (x *GetProductResponse) GetProduct() *Product {
 	return nil
 }
 
+type UpdateProductRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Product *Product `protobuf:"bytes,1,opt,name=product,proto3" json:"product,omitempty"`
+}
+
+func (x *UpdateProductRequest) Reset() {
+	*x = UpdateProductRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_products_productpb_product_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateProductRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateProductRequest) ProtoMessage() {}
+
+func (x *UpdateProductRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_products_productpb_product_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateProductRequest.ProtoReflect.Descriptor instead.
+func (*UpdateProductRequest) Descriptor() ([]byte, []int) {
+	return file_products_productpb_product_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *UpdateProductRequest) GetProduct() *Product {
+	if x != nil {
+		return x.Product
+	}
+	return nil
+}
+
+type UpdateProductResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Product *Product `protobuf:"bytes,1,opt,name=product,proto3" json:"product,omitempty"`
+}
+
+func (x *UpdateProductResponse) Reset() {
+	*x = UpdateProductResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_products_productpb_product_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateProductResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateProductResponse) ProtoMessage() {}
+
+func (x *UpdateProductResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_products_productpb_product_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateProductResponse.ProtoReflect.Descriptor instead.
+func (*UpdateProductResponse) Descriptor() ([]byte, []int) {
+	return file_products_productpb_product_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *UpdateProductResponse) GetProduct() *Product {
+	if x != nil {
+		return x.Product
+	}
+	return nil
+}
+
 var File_products_productpb_product_proto protoreflect.FileDescriptor
 
 var file_products_productpb_product_proto_rawDesc = []byte{
@@ -300,20 +394,34 @@ var file_products_productpb_product_proto_rawDesc = []byte{
 	0x12, 0x47, 0x65, 0x74, 0x50, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f,
 	0x6e, 0x73, 0x65, 0x12, 0x2a, 0x0a, 0x07, 0x70, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x18, 0x01,
 	0x20, 0x01, 0x28, 0x0b, 0x32, 0x10, 0x2e, 0x70, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x2e, 0x50,
-	0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x52, 0x07, 0x70, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x32,
-	0xab, 0x01, 0x0a, 0x0e, 0x50, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x53, 0x65, 0x72, 0x76, 0x69,
-	0x63, 0x65, 0x12, 0x50, 0x0a, 0x0d, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x50, 0x72, 0x6f, 0x64,
-	0x75, 0x63, 0x74, 0x12, 0x1d, 0x2e, 0x70, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x2e, 0x43, 0x72,
-	0x65, 0x61, 0x74, 0x65, 0x50, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x1a, 0x1e, 0x2e, 0x70, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x2e, 0x43, 0x72, 0x65,
-	0x61, 0x74, 0x65, 0x50, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x22, 0x00, 0x12, 0x47, 0x0a, 0x0a, 0x47, 0x65, 0x74, 0x50, 0x72, 0x6f, 0x64, 0x75,
-	0x63, 0x74, 0x12, 0x1a, 0x2e, 0x70, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x2e, 0x47, 0x65, 0x74,
-	0x50, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1b,
-	0x2e, 0x70, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x2e, 0x47, 0x65, 0x74, 0x50, 0x72, 0x6f, 0x64,
-	0x75, 0x63, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x42, 0x14, 0x5a,
-	0x12, 0x70, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x73, 0x2f, 0x70, 0x72, 0x6f, 0x64, 0x75, 0x63,
-	0x74, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x52, 0x07, 0x70, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x22,
+	0x42, 0x0a, 0x14, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x2a, 0x0a, 0x07, 0x70, 0x72, 0x6f, 0x64, 0x75,
+	0x63, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x10, 0x2e, 0x70, 0x72, 0x6f, 0x64, 0x75,
+	0x63, 0x74, 0x2e, 0x50, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x52, 0x07, 0x70, 0x72, 0x6f, 0x64,
+	0x75, 0x63, 0x74, 0x22, 0x43, 0x0a, 0x15, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x72, 0x6f,
+	0x64, 0x75, 0x63, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2a, 0x0a, 0x07,
+	0x70, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x10, 0x2e,
+	0x70, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x2e, 0x50, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x52,
+	0x07, 0x70, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x32, 0xfb, 0x01, 0x0a, 0x0e, 0x50, 0x72, 0x6f,
+	0x64, 0x75, 0x63, 0x74, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x50, 0x0a, 0x0d, 0x43,
+	0x72, 0x65, 0x61, 0x74, 0x65, 0x50, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x12, 0x1d, 0x2e, 0x70,
+	0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x50, 0x72, 0x6f,
+	0x64, 0x75, 0x63, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1e, 0x2e, 0x70, 0x72,
+	0x6f, 0x64, 0x75, 0x63, 0x74, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x50, 0x72, 0x6f, 0x64,
+	0x75, 0x63, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x47, 0x0a,
+	0x0a, 0x47, 0x65, 0x74, 0x50, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x12, 0x1a, 0x2e, 0x70, 0x72,
+	0x6f, 0x64, 0x75, 0x63, 0x74, 0x2e, 0x47, 0x65, 0x74, 0x50, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1b, 0x2e, 0x70, 0x72, 0x6f, 0x64, 0x75, 0x63,
+	0x74, 0x2e, 0x47, 0x65, 0x74, 0x50, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x4e, 0x0a, 0x0d, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65,
+	0x50, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x12, 0x1d, 0x2e, 0x70, 0x72, 0x6f, 0x64, 0x75, 0x63,
+	0x74, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1e, 0x2e, 0x70, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74,
+	0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x14, 0x5a, 0x12, 0x70, 0x72, 0x6f, 0x64, 0x75, 0x63,
+	0x74, 0x73, 0x2f, 0x70, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -328,27 +436,33 @@ func file_products_productpb_product_proto_rawDescGZIP() []byte {
 	return file_products_productpb_product_proto_rawDescData
 }
 
-var file_products_productpb_product_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_products_productpb_product_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_products_productpb_product_proto_goTypes = []interface{}{
 	(*Product)(nil),               // 0: product.Product
 	(*CreateProductRequest)(nil),  // 1: product.CreateProductRequest
 	(*CreateProductResponse)(nil), // 2: product.CreateProductResponse
 	(*GetProductRequest)(nil),     // 3: product.GetProductRequest
 	(*GetProductResponse)(nil),    // 4: product.GetProductResponse
+	(*UpdateProductRequest)(nil),  // 5: product.UpdateProductRequest
+	(*UpdateProductResponse)(nil), // 6: product.UpdateProductResponse
 }
 var file_products_productpb_product_proto_depIdxs = []int32{
 	0, // 0: product.CreateProductRequest.product:type_name -> product.Product
 	0, // 1: product.CreateProductResponse.product:type_name -> product.Product
 	0, // 2: product.GetProductResponse.product:type_name -> product.Product
-	1, // 3: product.ProductService.CreateProduct:input_type -> product.CreateProductRequest
-	3, // 4: product.ProductService.GetProduct:input_type -> product.GetProductRequest
-	2, // 5: product.ProductService.CreateProduct:output_type -> product.CreateProductResponse
-	4, // 6: product.ProductService.GetProduct:output_type -> product.GetProductResponse
-	5, // [5:7] is the sub-list for method output_type
-	3, // [3:5] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	0, // 3: product.UpdateProductRequest.product:type_name -> product.Product
+	0, // 4: product.UpdateProductResponse.product:type_name -> product.Product
+	1, // 5: product.ProductService.CreateProduct:input_type -> product.CreateProductRequest
+	3, // 6: product.ProductService.GetProduct:input_type -> product.GetProductRequest
+	5, // 7: product.ProductService.UpdateProduct:input_type -> product.UpdateProductRequest
+	2, // 8: product.ProductService.CreateProduct:output_type -> product.CreateProductResponse
+	4, // 9: product.ProductService.GetProduct:output_type -> product.GetProductResponse
+	6, // 10: product.ProductService.UpdateProduct:output_type -> product.UpdateProductResponse
+	8, // [8:11] is the sub-list for method output_type
+	5, // [5:8] is the sub-list for method input_type
+	5, // [5:5] is the sub-list for extension type_name
+	5, // [5:5] is the sub-list for extension extendee
+	0, // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_products_productpb_product_proto_init() }
@@ -417,6 +531,30 @@ func file_products_productpb_product_proto_init() {
 				return nil
 			}
 		}
+		file_products_productpb_product_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateProductRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_products_productpb_product_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateProductResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -424,7 +562,7 @@ func file_products_productpb_product_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_products_productpb_product_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   5,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -453,6 +591,7 @@ type ProductServiceClient interface {
 	//CRUD
 	CreateProduct(ctx context.Context, in *CreateProductRequest, opts ...grpc.CallOption) (*CreateProductResponse, error)
 	GetProduct(ctx context.Context, in *GetProductRequest, opts ...grpc.CallOption) (*GetProductResponse, error)
+	UpdateProduct(ctx context.Context, in *UpdateProductRequest, opts ...grpc.CallOption) (*UpdateProductResponse, error)
 }
 
 type productServiceClient struct {
@@ -481,11 +620,21 @@ func (c *productServiceClient) GetProduct(ctx context.Context, in *GetProductReq
 	return out, nil
 }
 
+func (c *productServiceClient) UpdateProduct(ctx context.Context, in *UpdateProductRequest, opts ...grpc.CallOption) (*UpdateProductResponse, error) {
+	out := new(UpdateProductResponse)
+	err := c.cc.Invoke(ctx, "/product.ProductService/UpdateProduct", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ProductServiceServer is the server API for ProductService service.
 type ProductServiceServer interface {
 	//CRUD
 	CreateProduct(context.Context, *CreateProductRequest) (*CreateProductResponse, error)
 	GetProduct(context.Context, *GetProductRequest) (*GetProductResponse, error)
+	UpdateProduct(context.Context, *UpdateProductRequest) (*UpdateProductResponse, error)
 }
 
 // UnimplementedProductServiceServer can be embedded to have forward compatible implementations.
@@ -497,6 +646,9 @@ func (*UnimplementedProductServiceServer) CreateProduct(context.Context, *Create
 }
 func (*UnimplementedProductServiceServer) GetProduct(context.Context, *GetProductRequest) (*GetProductResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetProduct not implemented")
+}
+func (*UnimplementedProductServiceServer) UpdateProduct(context.Context, *UpdateProductRequest) (*UpdateProductResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateProduct not implemented")
 }
 
 func RegisterProductServiceServer(s *grpc.Server, srv ProductServiceServer) {
@@ -539,6 +691,24 @@ func _ProductService_GetProduct_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ProductService_UpdateProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateProductRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductServiceServer).UpdateProduct(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/product.ProductService/UpdateProduct",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductServiceServer).UpdateProduct(ctx, req.(*UpdateProductRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _ProductService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "product.ProductService",
 	HandlerType: (*ProductServiceServer)(nil),
@@ -550,6 +720,10 @@ var _ProductService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetProduct",
 			Handler:    _ProductService_GetProduct_Handler,
+		},
+		{
+			MethodName: "UpdateProduct",
+			Handler:    _ProductService_UpdateProduct_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

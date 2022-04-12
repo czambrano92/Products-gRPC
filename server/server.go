@@ -102,6 +102,52 @@ func dbToProductPb(data *product) *productpb.Product {
 	}
 }
 
+func (*server) UpdateProduct(ctx context.Context, req *productpb.UpdateProductRequest) (*productpb.UpdateProductResponse, error) {
+	fmt.Println("Update product request")
+
+	prod := req.GetProduct()
+
+	oid, err := primitive.ObjectIDFromHex(prod.GetId())
+
+	if err != nil {
+
+		return nil, status.Errorf(
+			codes.InvalidArgument,
+			fmt.Sprintf("cannot parse ID %v", prod),
+		)
+	}
+
+	//create empty struc
+
+	data := &product{}
+	filter := bson.M{"_id": oid}
+
+	//search the product in db
+	res := collection.FindOne(context.Background(), filter)
+	if res.Decode(data); err != nil {
+		return nil, status.Errorf(
+			codes.NotFound,
+			fmt.Sprintf("Cannot find the product with the id %v", err),
+		)
+	}
+	//update the internal struct product
+	data.Name = prod.GetName()
+	data.Price = prod.GetPrice()
+	//update in db
+	_, updateError := collection.ReplaceOne(context.Background(), filter, data)
+	if updateError != nil {
+		return nil, status.Errorf(
+			codes.Internal,
+			fmt.Sprintf("Cannot update the product %v", updateError),
+		)
+	}
+
+	return &productpb.UpdateProductResponse{
+		Product: dbToProductPb(data),
+	}, nil
+
+}
+
 func main() {
 
 	log.SetFlags(log.LstdFlags | log.Lshortfile)

@@ -22,10 +22,17 @@ message GetProductRequest{
 message GetProductResponse{
     Product product = 1;
 }
+message UpdateProductRequest{
+    Product product = 1;
+}
+message UpdateProductResponse{
+    Product product = 1;
+}
 
 
 service ProductService{
     //CRUD
     rpc CreateProduct (CreateProductRequest) returns(CreateProductResponse){};
     rpc GetProduct (GetProductRequest) returns(GetProductResponse){};
+    rpc UpdateProduct (UpdateProductRequest) returns(UpdateProductResponse);
 }
