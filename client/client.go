@@ -61,14 +61,26 @@ func main() {
 	fmt.Println("-------Updating Product------")
 	newProduct := &productpb.Product{
 		Id:    productID,
-		Name:  "New name: Smartphone",
+		Name:  "New name: Smartphone XV",
 		Price: 40500,
 	}
 
 	updateResponse, updateErr := c.UpdateProduct(context.Background(), &productpb.UpdateProductRequest{Product: newProduct})
 	if updateErr != nil {
-		fmt.Printf("Error happened while updating product &v \n", updateErr)
+		fmt.Printf("Error happened while updating product %v ", updateErr)
 	}
 
 	fmt.Printf("Product was updated %v", updateResponse)
+
+	//Delete product
+	deleteRes, deleteErr := c.DeleteProduct(context.Background(), &productpb.DeleteProductRequest{
+		ProductId: productID,
+	})
+
+	if deleteErr != nil {
+		fmt.Printf("Error deleting the product %v", deleteErr)
+	}
+
+	fmt.Printf("product deleted %v: \n", deleteRes.GetProductId())
+
 }
